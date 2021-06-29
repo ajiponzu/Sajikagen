@@ -1,65 +1,31 @@
-/* アプリケーションクラス */
-class Sajikagen {
+/* 音声認識, 参考「https://jellyware.jp/kurage/iot/webspeechapi.html」 */
+const startApplication = () => {
+  window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
 
-  ///コンストラクタ
-  ///メンバ変数:
-  // reco_: 音声認識オブジェクト
-  // miniWindow_: ミニウィンドウハンドラ
-  // windowInf_: ミニウィンドウ情報
-  constructor() {
-    window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+  let reco = new webkitSpeechRecognition();
 
-    this.reco_ = new webkitSpeechRecognition();
-    this.miniWindow_;
-    this.windowInf_ = "width=300,height=300";
+  reco.lang = 'ja-JP';
+  reco.continuous = true;
 
-    ///ミニウィンドウ表示(keyをgoogle検索した結果)
-    ///引数:
-    // key: 検索文字列
-    ///注):
-    // REST APIを使おう　(クエリのあるURL)
-    this.openMiniWindow_ = (key) => {
-      this.miniWindow_ = window.open(
-        `https://www.google.com/search?q=${key}&ie=UTF-8`, 'kosaji', this.windowInf_
-      );
-    }
-  }
+  reco.onerr = (event) => {
+    console.log(event.error);
+  };
 
-  ///アプリケーションの中身
-  // 本当は音声認識関数として分離し,
-  // いろんな機能の関数たちを呼ぶだけにしたいが, なんか呼べなかった
-  start() {
-    this.reco_.lang = 'ja-JP';
-    this.reco_.continuous = true;
-    this.reco_.interimResults = true;
+  reco.onsoundend = () => {
+    startApplication();
+  };
 
-    this.reco_.onresult = (event) => {
-      const result = event.results[0][0].transcript;
+  reco.onresult = (event) => {
+    const result = event.results[0][0].transcript;
+    chrome.storage.local.set(
+      { key: result },
+      () => {
+        console.log('set: ' + result);
+      }
+    );
+  };
 
-      if (result == "閉じろ")
-        this.miniWindow_.close();
-      else
-        this.openMiniWindow_(result);
+  reco.start();
+};
 
-      console.log(result);
-    };
-
-    this.reco_.onerr = (event) => {
-      console.log(event.error);
-    };
-
-    this.reco_.onspeechend = (event) => {
-      console.log(event);
-    };
-
-    this.reco_.onspeechstart = (event) => {
-      console.log(event);
-    }
-
-    this.reco_.start();
-  }
-}
-
-//メインルーチン
-let app = new Sajikagen();
-app.start();
+startApplication();

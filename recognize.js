@@ -15,14 +15,18 @@ const startApplication = () => {
     startApplication();
   };
 
-  reco.onresult = (event) => {
-    const result = event.results[0][0].transcript;
+  reco.onresult = (e) => {
+    let result = "";
+    [...e.results].slice(e.resultIndex).forEach((results) => {
+      result = results[0].transcript;
+    });
     chrome.storage.local.set(
       { key: result },
       () => {
         console.log('set: ' + result);
       }
     );
+    startApplication();
   };
 
   reco.start();

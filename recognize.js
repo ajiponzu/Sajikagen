@@ -10,7 +10,6 @@ const startApplication = () => {
   }
   reco.onsoundend = () => {
     console.log("onsoundend")
-    startApplication()
   }
   reco.onend = () => {
     console.log("onend")
@@ -22,15 +21,15 @@ const startApplication = () => {
     })
     let res = confirm("検索しますか？")
     if (res) {
-      chrome.storage.local.set({ key: result, mode: '2' }, () => {
+      chrome.storage.local.set({ key: result, mode: '0' }, () => {
         console.log("set: " + result)
       })
     }
-
-    startApplication()
   }
   reco.start()
 }
+
+startApplication()
 
 //ストレージに変更があれば, 新しい値をgetで取得するようにした
 chrome.storage.onChanged.addListener((_changes, _namespace) => {

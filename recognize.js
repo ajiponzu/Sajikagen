@@ -12,20 +12,26 @@ const startApplication = () => {
     console.log("onsoundend")
     startApplication()
   }
+  reco.onend = () => {
+    console.log("onend")
+  }
   reco.onresult = (e) => {
-    let result = ""
-    ;[...e.results].slice(e.resultIndex).forEach((results) => {
+    let result = "";
+    [...e.results].slice(e.resultIndex).forEach((results) => {
       result = results[0].transcript
     })
-    const res = confirm("検索しますか？")
-    if(res){
+    let res = confirm("検索しますか？")
+    if (res) {
       chrome.storage.local.set({ key: result }, () => {
         console.log("set: " + result)
       })
     }
-    
+
     startApplication()
   }
   reco.start()
 }
-startApplication()
+
+// startApplication()
+
+setInterval(startApplication, 10000);

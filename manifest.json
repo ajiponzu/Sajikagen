@@ -7,6 +7,10 @@
         "48": "Icon48.png",
         "128": "Icon128.png"
     },
+    "browser_action": {
+        "default_title": "音声認識開始",
+        "default_popup": "popup.html"
+    },
     "content_scripts": [
         {
             "matches": [
@@ -22,21 +26,12 @@
     ],
     "background": {
         "scripts": [
-            "popup.js"
+            "background.js"
         ],
         "persistent": true
     },
     "permissions": [
         "tabs",
         "storage"
-    ],
-    "commands": {
-        "activate": {
-            "description": "Activate this Extension",
-            "global": false,
-            "suggested_key": {
-                "default": "Ctrl+Shift+U"
-            }
-        }
-    }
+    ]
 }

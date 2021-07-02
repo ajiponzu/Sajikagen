@@ -3,6 +3,11 @@
     "version": "0.0.1",
     "manifest_version": 2,
     "description": "e-kagen",
+    "icons": {
+        "16": "icon16x16.png",
+        "48": "icon48x48.png",
+        "128": "icon128x128.png"
+    },
     "content_scripts": [
         {
             "matches": [

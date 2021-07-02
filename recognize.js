@@ -22,7 +22,7 @@ const startApplication = () => {
     })
     let res = confirm("検索しますか？")
     if (res) {
-      chrome.storage.local.set({ key: result }, () => {
+      chrome.storage.local.set({ key: result, mode: '2' }, () => {
         console.log("set: " + result)
       })
     }
@@ -32,6 +32,11 @@ const startApplication = () => {
   reco.start()
 }
 
-// startApplication()
-
-setInterval(startApplication, 10000);
+//ストレージに変更があれば, 新しい値をgetで取得するようにした
+chrome.storage.onChanged.addListener((_changes, _namespace) => {
+  console.log("location: recognize.js, 'onchanged called'")
+  chrome.storage.local.get(["command"], (result) => {
+    if (!result.command) return
+    startApplication()
+  })
+})

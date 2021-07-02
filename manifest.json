@@ -22,5 +22,14 @@
     "permissions": [
         "tabs",
         "storage"
-    ]
+    ],
+    "commands": {
+        "activate": {
+            "description": "Activate this Extension",
+            "global": false,
+            "suggested_key": {
+                "default": "Ctrl+Shift+U"
+            }
+        }
+    }
 }

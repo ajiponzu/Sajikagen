@@ -20,6 +20,7 @@ window.onload = () => {
     }
     reco.onsoundend = () => {
       console.log("onsoundend")
+      startApplication()
     }
     reco.onend = () => {
       console.log("onend")
@@ -33,8 +34,8 @@ window.onload = () => {
       if (res) {
         chrome.storage.local.set({ key: result, mode: '0' }, () => {
           console.log("set: " + result)
-          reco.abort()
         })
+        startApplication()
       }
     }
 

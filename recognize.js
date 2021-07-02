@@ -33,15 +33,13 @@ window.onload = () => {
       if (res) {
         chrome.storage.local.set({ key: result, mode: '0' }, () => {
           console.log("set: " + result)
+          reco.abort()
         })
-        reco.abort()
       }
     }
 
     reco.start()
   }
-
-  startApplication()
 
   //ストレージに変更があれば, 新しい値をgetで取得するようにした
   chrome.storage.onChanged.addListener((_changes, _namespace) => {

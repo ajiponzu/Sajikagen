@@ -3,8 +3,9 @@
     "version": "0.0.1",
     "manifest_version": 2,
     "description": "e-kagen",
-    "browser_action": {
-        "default_popup": "popup.html"
+    "icons": {
+        "48": "Icon48.png",
+        "128": "Icon128.png"
     },
     "content_scripts": [
         {
@@ -14,11 +15,28 @@
             ],
             "js": [
                 "recognize.js"
-            ]
+            ],
+            "match_about_blank": true,
+            "all_frames": true
         }
     ],
+    "background": {
+        "scripts": [
+            "popup.js"
+        ],
+        "persistent": true
+    },
     "permissions": [
-        "activeTab",
+        "tabs",
         "storage"
-    ]
+    ],
+    "commands": {
+        "activate": {
+            "description": "Activate this Extension",
+            "global": false,
+            "suggested_key": {
+                "default": "Ctrl+Shift+U"
+            }
+        }
+    }
 }

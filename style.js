@@ -5,7 +5,7 @@ var linkElement = document.createElement("link");
 // microphonｅ[1 - 5].css
 linkElement.type = "text/css";
 linkElement.rel = "stylesheet";
-linkElement.href = "css/microphone4.css"
+linkElement.href = "css/microphone5.css"
 
 // スタイルシート適用
 head.appendChild(linkElement);

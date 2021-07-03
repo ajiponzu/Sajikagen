@@ -43,3 +43,15 @@
     opacity: 0;
   }
 }
+
+img.im:hover {
+  transform: scale(1.2, 1.2);
+}
+
+/* アイコンボタン クリック */
+img.im:active {
+  -webkit-transform: translate(0, 3px);
+  transform: translate(0, 3px);
+  -webkit-box-shadow: 0 2px 0 #505253;
+  box-shadow: 0 1px 0 #505253;
+}

@@ -25,6 +25,7 @@ body {
   text-align: center;
   margin-top: 7px;
   margin-bottom: 9px;
+  z-index: 1;
 }
 .im-li ul {
   margin: 20px;
@@ -74,20 +75,3 @@ img.im:active {
   -webkit-box-shadow: 0 2px 0 #505253;
   box-shadow: 0 1px 0 #505253;
 }
-
-/* マイク画像音声認識前 */
-/* .loader-wrap  {
-	position: fixed;
-	display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-
-}
-
-.loader {
-  width: 80px;
-  position: relative;
-  bottom: 50px;
-} */

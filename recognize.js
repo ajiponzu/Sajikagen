@@ -31,7 +31,7 @@ window.onload = () => {
       })
       let res = confirm("検索しますか？")
       if (res) {
-        chrome.storage.local.set({ key: result, mode: '0' }, () => {
+        chrome.storage.local.set({ key: result, mode: '1' }, () => {
           console.log("set: " + result)
         })
         reco.abort()

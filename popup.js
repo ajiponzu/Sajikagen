@@ -79,3 +79,13 @@ chrome.commands.onCommand.addListener((command) => {
         console.log("set activate command")
     })
 });
+
+
+// クリックイベントサンプルコード
+// getElementByIDの引数をクリック画像のidに変更
+// document.addEventListener("DOMContentLoaded", function(){
+//     var hoge = document.getElementById("qiita");
+//     hoge.addEventListener("click", function(){
+//         // ここに処理を書く
+//     });
+// });

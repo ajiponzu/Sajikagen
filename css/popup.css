@@ -1,0 +1,77 @@
+body {
+    width: 270px;
+    height: 270px;
+    /* チョコミント */
+    background-color: #00CED1;
+    /* グレー */
+    /* background: gray; */
+    border: solid 1px #beeef0;
+    /* border: dotted 3px #beeef0; */
+    /* border-radius: 10px; */
+}
+
+/* アイコン枠 */
+.im-wrap {
+  line-height: 30px;
+  border-radius: 10px;
+  background-color: white;
+  margin: 6px;
+  display: flex;
+  border: solid 2px #beeef0;
+}
+
+/* アイコン横並び中央揃え */
+.im-li {
+  text-align: center;
+  margin-top: 7px;
+  margin-bottom: 9px;
+  z-index: 1;
+}
+.im-li ul {
+  margin: 20px;
+}
+.im-li li {
+  /* display: -moz-inline-box; */
+  display: inline-block;
+}
+
+ul.im-li {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+/* アイコン */
+.im {
+  width: 35px;
+  height: 35px;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  border-radius: 20%;
+  cursor: pointer;
+
+  border-radius: 30%;
+  line-height: 100px;
+  padding: 1px;
+  margin: 1px;
+  -webkit-box-shadow: 0 1px 0 #505253;
+  box-shadow: 0 3px 0 #505253;
+  border: solid 2px #505253;
+}
+
+/* アイコンボタン ホバー */
+.im {
+  transition: all 0.2s;
+}
+img.im:hover {
+  transform: scale(1.2, 1.2);
+}
+
+/* アイコンボタン クリック */
+img.im:active {
+  -webkit-transform: translate(0, 3px);
+  transform: translate(0, 3px);
+  -webkit-box-shadow: 0 2px 0 #505253;
+  box-shadow: 0 1px 0 #505253;
+}

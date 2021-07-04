@@ -4,7 +4,6 @@
 const windowId = window.id
 
 //ポップアップ情報
-let popupId = 0
 const displayWid = window.parent.screen.width
 const dipslayHigh = window.parent.screen.height
 const popupWid = Math.floor(700 * displayWid / 1920)
@@ -36,21 +35,21 @@ const QueryCreaters =
     ]
 
 //ストレージに変更があれば, 新しい値をgetで取得するようにした
-chrome.storage.onChanged.addListener((_changes, _namespace) => {
+chrome.storage.onChanged.addListener((changes, _namespace) => {
     console.log("location: background.js, 'onchanged called'")
-    let mode = 0
-    //検索モードを取得
+    const changeKeys = Object.keys(changes)
+    console.log(changeKeys)
+    if (!changeKeys.includes("key", 0)) return
+
+    const newKey = changes["key"]["newValue"]
+    if (newKey == "") return
+
+    //検索モードを取得して検索キーで実行
     chrome.storage.local.get(["mode"], (result) => {
-        if (!result.mode) return
         console.log("search mode currently is " + result.mode)
-        mode = result.mode
-    })
-    //検索キーを取得
-    chrome.storage.local.get(["key"], (result) => {
-        if (!result.key) return
-        console.log("popup Value currently is " + result.key)
+        console.log("popup Value currently is " + newKey)
         chrome.windows.create({
-            url: QueryCreaters[mode](result.key),
+            url: QueryCreaters[result.mode](newKey),
             type: 'popup',
             // Youtubeで丁度よく窓化できるサイズ
             width: popupWid, height: popupHigh,
@@ -62,12 +61,4 @@ chrome.storage.onChanged.addListener((_changes, _namespace) => {
             focused: true
         })
     })
-})
-
-//ポップアップが表示されると, すでに開いていたポップアップを終了し, idを更新する
-chrome.windows.onCreated.addListener((window) => {
-    if (popupId == 0) return
-    chrome.windows.remove(popupId, () => { })
-    popupId = window.id
-    console.log(`${popupId}`)
 })

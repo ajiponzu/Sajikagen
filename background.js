@@ -4,7 +4,6 @@
 const windowId = window.id
 
 //ポップアップ情報
-let popupId = 0
 const displayWid = window.parent.screen.width
 const dipslayHigh = window.parent.screen.height
 const popupWid = Math.floor(700 * displayWid / 1920)
@@ -41,59 +40,25 @@ chrome.storage.onChanged.addListener((changes, _namespace) => {
     const changeKeys = Object.keys(changes)
     console.log(changeKeys)
     if (!changeKeys.includes("key", 0)) return
-    let mode = 0
-    //検索モードを取得
-    // chrome.storage.local.get(["mode"], (result) => {
-    //     if (result.mode) {
-    //         console.log("search mode currently is " + result.mode)
-    //         mode = result.mode
-    //     }
-    //     else
-    //         mode = 0
-    // })
-    if (changes["mode"]) {
-        console.log("search mode currently is " + result.mode)
-        mode = result.mode
-    } else
-        mode = 0
 
-    //検索キーを取得
-    // chrome.storage.local.get(["key"], (result) => {
-    //     if (!result.key) return
-    //     console.log("popup Value currently is " + result.key)
-    //     chrome.windows.create({
-    //         url: QueryCreaters[mode](result.key),
-    //         type: 'popup',
-    //         // Youtubeで丁度よく窓化できるサイズ
-    //         width: popupWid, height: popupHigh,
-    //         //表示位置(横)
-    //         left: displayWid - popupWid - padX,
-    //         //表示位置(縦)
-    //         top: popupTop,
-    //         //最前面に表示
-    //         focused: true
-    //     })
-    // })
     const newKey = changes["key"]["newValue"]
-    console.log("popup Value currently is " + newKey)
-    chrome.windows.create({
-        url: QueryCreaters[mode](newKey),
-        type: 'popup',
-        // Youtubeで丁度よく窓化できるサイズ
-        width: popupWid, height: popupHigh,
-        //表示位置(横)
-        left: displayWid - popupWid - padX,
-        //表示位置(縦)
-        top: popupTop,
-        //最前面に表示
-        focused: true
-    })
-})
+    if (newKey == "") return
 
-//ポップアップが表示されると, すでに開いていたポップアップを終了し, idを更新する
-chrome.windows.onCreated.addListener((window) => {
-    if (popupId == 0) return
-    chrome.windows.remove(popupId, () => { })
-    popupId = window.id
-    console.log(`${popupId}`)
+    //検索モードを取得して検索キーで実行
+    chrome.storage.local.get(["mode"], (result) => {
+        console.log("search mode currently is " + result.mode)
+        console.log("popup Value currently is " + newKey)
+        chrome.windows.create({
+            url: QueryCreaters[result.mode](newKey),
+            type: 'popup',
+            // Youtubeで丁度よく窓化できるサイズ
+            width: popupWid, height: popupHigh,
+            //表示位置(横)
+            left: displayWid - popupWid - padX,
+            //表示位置(縦)
+            top: popupTop,
+            //最前面に表示
+            focused: true
+        })
+    })
 })

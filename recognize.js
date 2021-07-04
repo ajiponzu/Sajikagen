@@ -11,17 +11,6 @@ const startApplication = () => {
   reco.onerr = (event) => {
     console.log(event.error)
   }
-  reco.onnomatch = () => {
-    alert("音声は認識できませんでした")
-    console.log("音声は認識できませんでした");
-  }
-  reco.onsoundend = () => {
-    console.log("onsoundend")
-    startApplication()
-  }
-  reco.onend = () => {
-    console.log("onend")
-  }
   reco.onresult = (e) => {
     let result = "";
     [...e.results].slice(e.resultIndex).forEach((results) => {
@@ -31,20 +20,20 @@ const startApplication = () => {
     if (res) {
       chrome.storage.local.set({ key: result }, () => {
         console.log("set: " + result)
+        reco.abort()
       })
-      startApplication()
+    } else {
+      chrome.storage.local.set({ key: "" }, () => {
+        console.log("set: none")
+        reco.abort()
+      })
     }
   }
-
   reco.start()
 }
 
 //ストレージに変更があれば, 新しい値をgetで取得するようにした
 chrome.storage.onChanged.addListener((changes, _namespace) => {
-  // chrome.storage.local.get(["command"], (result) => {
-  //   if (!result.command) return
-  //   startApplication()
-  // })
   const changeKeys = Object.keys(changes)
   if (!changeKeys.includes("command", 0)) return
   console.log("location: recognize.js, 'onchanged called'")

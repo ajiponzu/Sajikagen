@@ -1,13 +1,9 @@
 body {
-    width: 270px;
-    height: 270px;
-    /* チョコミント */
-    background-color: #00CED1;
-    /* グレー */
-    /* background: gray; */
-    border: solid 1px #beeef0;
-    /* border: dotted 3px #beeef0; */
-    /* border-radius: 10px; */
+  width: 275px;
+  height: 275px;
+  /* チョコミント */
+  background-color: #00ced1;
+  border: solid 1px #beeef0;
 }
 
 /* アイコン枠 */
@@ -55,7 +51,6 @@ ul.im-li {
   line-height: 100px;
   padding: 1px;
   margin: 1px;
-  -webkit-box-shadow: 0 1px 0 #505253;
   box-shadow: 0 3px 0 #505253;
   border: solid 2px #505253;
 }

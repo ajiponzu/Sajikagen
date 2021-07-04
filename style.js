@@ -10,9 +10,13 @@ linkElement.href = "css/microphone5.css"
 // スタイルシート適用
 head.appendChild(linkElement)
 
+let randomizer = 0
+
 // モード変更関数
 const sendModeMessage = (mode) => {
-    chrome.storage.local.set({ mode: mode }, () => {
+    randomizer ^= 1
+    chrome.storage.local.set({ mode: mode, command: randomizer }, () => {
+        console.log("activate")
         console.log("send mode: " + mode)
     })
 }
@@ -20,36 +24,11 @@ const sendModeMessage = (mode) => {
 // ボタンクリック時のスタイルシート適用
 // 1回クリックした後，，イベントが発生しないように
 document.addEventListener("DOMContentLoaded", () => {
-    var q = document.getElementById("qiita")
-    var z = document.getElementById("zenn")
     var g = document.getElementById("google")
     var y = document.getElementById("youtube")
+    var q = document.getElementById("qiita")
+    var z = document.getElementById("zenn")
     var w = document.getElementById("wikipedia")
-    q.addEventListener("click", () => {
-        q.style.filter = 'brightness(120%)'
-        z.style.filter = 'grayscale(100%)'
-        g.style.filter = 'grayscale(100%)'
-        y.style.filter = 'grayscale(100%)'
-        w.style.filter = 'opacity(65%)'
-        sendModeMessage(2)
-        // z.style.width = '33px';
-        // z.style.height = '33px';
-        // g.style.width = '33px';
-        // g.style.height = '33px';
-        // y.style.width = '33px';
-        // y.style.height = '33px';
-        // w.style.width = '33px';
-        // w.style.height = '33px';
-    })
-
-    z.addEventListener("click", () => {
-        z.style.filter = 'brightness(120%)'
-        q.style.filter = 'grayscale(100%)'
-        g.style.filter = 'grayscale(100%)'
-        y.style.filter = 'grayscale(100%)'
-        w.style.filter = 'opacity(65%)'
-        sendModeMessage(3)
-    })
 
     g.addEventListener("click", () => {
         g.style.filter = 'brightness(120%)'
@@ -67,6 +46,24 @@ document.addEventListener("DOMContentLoaded", () => {
         g.style.filter = 'grayscale(100%)'
         w.style.filter = 'opacity(65%)'
         sendModeMessage(1)
+    })
+
+    q.addEventListener("click", () => {
+        q.style.filter = 'brightness(120%)'
+        z.style.filter = 'grayscale(100%)'
+        g.style.filter = 'grayscale(100%)'
+        y.style.filter = 'grayscale(100%)'
+        w.style.filter = 'opacity(65%)'
+        sendModeMessage(2)
+    })
+
+    z.addEventListener("click", () => {
+        z.style.filter = 'brightness(120%)'
+        q.style.filter = 'grayscale(100%)'
+        g.style.filter = 'grayscale(100%)'
+        y.style.filter = 'grayscale(100%)'
+        w.style.filter = 'opacity(65%)'
+        sendModeMessage(3)
     })
 
     w.addEventListener("click", () => {

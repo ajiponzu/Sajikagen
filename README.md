@@ -1,8 +1,10 @@
 # Sajikagen
 
-## 実装予定
-> - アイコンクリックするまでアニメーション停止
-> - アイコンクリック後アニメーション開始
-> - 拡張アイコン四辺丸く，目大きく
-> - ポップアップウィンドウ枠装飾
-> - アイコン群枠装飾
+## Links
+> ### Youtube
+> - https:youtu.be/kEuorL_ht8s
+> - https:youtu.be/rDsxDeO6DiU
+> - https:youtu.be/PdbREKhNsVE
+
+> ### Slide
+> - https://docs.google.com/presentation/d/1SDd9XuWdkm6XJ4btvNUYM4TDKNmSbhV7scjN_wDq1vo/edit#slide=id.gc6f80d1ff_0_5

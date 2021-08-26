@@ -16,8 +16,8 @@ let randomizer = 0
 const sendModeMessage = (mode) => {
     randomizer ^= 1
     chrome.storage.local.set({ mode: mode, command: randomizer }, () => {
-        console.log("activate")
-        console.log("send mode: " + mode)
+        // console.log("activate")
+        // console.log("send mode: " + mode)
     })
 }
 

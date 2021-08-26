@@ -20,12 +20,10 @@ const startApplication = () => {
     if (res) {
       chrome.storage.local.set({ key: result }, () => {
         // console.log("set: " + result)
-        reco.abort()
       })
     } else {
       chrome.storage.local.set({ key: "" }, () => {
         // console.log("set: none")
-        reco.abort()
       })
     }
   }

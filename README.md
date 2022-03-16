@@ -8,3 +8,6 @@
 
 > ### Slide
 > - https://docs.google.com/presentation/d/1SDd9XuWdkm6XJ4btvNUYM4TDKNmSbhV7scjN_wDq1vo/edit#slide=id.gc6f80d1ff_0_5
+
+> ### Store
+> - https://chrome.google.com/webstore/detail/sajikagen/ngpenjgbamelckakjeddknffhnheenbe
